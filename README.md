@@ -1,3 +1,3 @@
 ## GenPlay Studio
 
-GenPlay Studio is a project aiming to apply generative ai to tabletop role play games.
+GenPlay Studio is a platform aiming to apply generative ai to tabletop role play games.
