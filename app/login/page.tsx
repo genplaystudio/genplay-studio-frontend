@@ -1,11 +1,13 @@
 import AcmeLogo from '@/app/ui/acme-logo';
-import LoginForm from '@/app/ui/login-form';
+import CredentialLoginForm from '@/app/ui/credential-login-form';
+import Auth0LoginForm from '@/app/ui/auth0-login-form';
 import { Metadata } from 'next';
- 
+import { signIn, auth, providerMap } from "@/auth";
+
 export const metadata: Metadata = {
   title: 'Login',
 };
- 
+
 export default function LoginPage() {
   return (
     <main className="flex items-center justify-center md:h-screen">
@@ -15,7 +17,17 @@ export default function LoginPage() {
             <AcmeLogo />
           </div>
         </div>
-        <LoginForm />
+        <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
+
+          {Object.values(providerMap).map((provider) => 
+          {
+            if(provider.name === 'Credentials'){
+              return <CredentialLoginForm />
+            } else {
+              return <Auth0LoginForm provider={provider}/>
+            }
+          })}
+        </div>
       </div>
     </main>
   );

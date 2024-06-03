@@ -5,6 +5,8 @@ import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import type { User } from '@/app/lib/definitions';
 import bcrypt from 'bcrypt';
+import GitHub from "next-auth/providers/github";
+import type { Provider } from "next-auth/providers";
  
 async function getUser(email: string): Promise<User | undefined> {
   try {
@@ -15,28 +17,46 @@ async function getUser(email: string): Promise<User | undefined> {
     throw new Error('Failed to fetch user.');
   }
 }
+
+const providers: Provider[] = [
+  GitHub({
+    clientId: process.env.AUTH_GITHUB_ID,
+    clientSecret: process.env.AUTH_GITHUB_SECRET,
+  }),
+  Credentials({
+    async authorize(credentials) {
+      const parsedCredentials = z
+        .object({ email: z.string().email(), password: z.string().min(6) })
+        .safeParse(credentials);
+
+      if (parsedCredentials.success) {
+        const { email, password } = parsedCredentials.data;
+        const user = await getUser(email);
+        if (!user) return null;
+        const passwordsMatch = await bcrypt.compare(password, user.password);
+
+        if (passwordsMatch) return user;
+      }
+
+      console.log('Invalid credentials');
+      return null;
+    },
+  }),
+];
+
+export const providerMap = providers.map((provider) => {
+  if (typeof provider === "function") {
+    const providerData = provider()
+    console.log(providerData.name);
+    return { id: providerData.id, name: providerData.name }
+  } else {
+    console.log(provider.name);
+    return { id: provider.id, name: provider.name }
+  }
+});
  
-export const { auth, signIn, signOut } = NextAuth({
+export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
-  providers: [
-    Credentials({
-      async authorize(credentials) {
-        const parsedCredentials = z
-          .object({ email: z.string().email(), password: z.string().min(6) })
-          .safeParse(credentials);
- 
-        if (parsedCredentials.success) {
-          const { email, password } = parsedCredentials.data;
-          const user = await getUser(email);
-          if (!user) return null;
-          const passwordsMatch = await bcrypt.compare(password, user.password);
- 
-          if (passwordsMatch) return user;
-        }
- 
-        console.log('Invalid credentials');
-        return null;
-      },
-    }),
-  ],
+  debug:true,
+  providers,
 });
