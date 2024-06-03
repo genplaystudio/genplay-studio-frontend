@@ -19,12 +19,11 @@ export default function LoginPage() {
         </div>
         <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
 
-          {Object.values(providerMap).map((provider) => 
-          {
-            if(provider.name === 'Credentials'){
-              return <CredentialLoginForm />
+          {Object.values(providerMap).map((provider) => {
+            if (provider.name === 'Credentials') {
+              return <CredentialLoginForm key={provider.id}/>
             } else {
-              return <Auth0LoginForm provider={provider}/>
+              return <Auth0LoginForm key={provider.id} provider={provider} />
             }
           })}
         </div>
