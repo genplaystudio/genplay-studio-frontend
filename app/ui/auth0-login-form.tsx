@@ -5,8 +5,25 @@ import { useFormState, useFormStatus } from 'react-dom';
 import { AuthError } from "next-auth"
 import { signIn, auth, providerMap } from "@/auth"
 import { redirect } from 'next/navigation';
+import Image from 'next/image';
 
-export default function Auth0LoginForm ({ provider }: { provider: {id: string, name: string} }) {
+export default function Auth0LoginForm({ provider }: { provider: { id: string, name: string } }) {
+
+    let imageSrc = '';
+    switch (provider.name) {
+        case 'GitHub':
+            imageSrc = '/github-icon.png';
+            break;
+        case 'Google':
+            imageSrc = '/google-icon.png';
+            break;
+        case 'Discord':
+            imageSrc = '/discord-icon.png';
+            break;
+        default:
+            // Optional: handle cases where provider.name doesn't match any of the cases
+            imageSrc = ''; // or any default value you want to set
+    }
 
     return (
         <form
@@ -30,9 +47,16 @@ export default function Auth0LoginForm ({ provider }: { provider: {id: string, n
                 }
             }}
         >
-            <button type="submit">
+            <Button className="mt-4 w-full" type="submit">
+                <Image
+                    src={imageSrc}
+                    width={30}
+                    height={30}
+                    alt="github logo"
+                    className="mr-3"
+                />
                 <span>Sign in with {provider.name}</span>
-            </button>
+            </Button>
         </form>
     );
 }

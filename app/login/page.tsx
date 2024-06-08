@@ -3,6 +3,7 @@ import CredentialLoginForm from '@/app/ui/credential-login-form';
 import Auth0LoginForm from '@/app/ui/auth0-login-form';
 import { Metadata } from 'next';
 import { signIn, auth, providerMap } from "@/auth";
+import { lusitana } from '@/app/ui/fonts';
 
 export const metadata: Metadata = {
   title: 'Login',
@@ -18,13 +19,17 @@ export default function LoginPage() {
           </div>
         </div>
         <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
+          <h1 className={`${lusitana.className} mb-3 text-2xl`}>
+            Please log in to continue.
+          </h1>
 
           {Object.values(providerMap).map((provider) => {
-            if (provider.name === 'Credentials') {
-              return <CredentialLoginForm key={provider.id}/>
-            } else {
-              return <Auth0LoginForm key={provider.id} provider={provider} />
-            }
+            return <Auth0LoginForm key={provider.id} provider={provider} />
+            // if (provider.name === 'Credentials') {
+            //   return <CredentialLoginForm key={provider.id}/>
+            // } else {
+            //   return <Auth0LoginForm key={provider.id} provider={provider} />
+            // }
           })}
         </div>
       </div>
