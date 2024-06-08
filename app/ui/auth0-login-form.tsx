@@ -10,12 +10,19 @@ import Image from 'next/image';
 export default function Auth0LoginForm({ provider }: { provider: { id: string, name: string } }) {
 
     let imageSrc = '';
-    if (provider.name === 'GitHub') {
-        imageSrc = '/github-icon.png';
-    } else if (provider.name === 'Google') {
-        imageSrc = '/google-icon.png';
-    } else if (provider.name === 'Discord') {
-        imageSrc = '/discord-icon.png';
+    switch (provider.name) {
+        case 'GitHub':
+            imageSrc = '/github-icon.png';
+            break;
+        case 'Google':
+            imageSrc = '/google-icon.png';
+            break;
+        case 'Discord':
+            imageSrc = '/discord-icon.png';
+            break;
+        default:
+            // Optional: handle cases where provider.name doesn't match any of the cases
+            imageSrc = ''; // or any default value you want to set
     }
 
     return (
