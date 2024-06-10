@@ -1,12 +1,17 @@
 import { memo } from "react";
 import { Handle, NodeProps, Position } from "reactflow";
 
+type NodeData = {
+    value: number;
+    label: string;
+};
+
 const CustomNode = ({
     data,
     isConnectable,
     targetPosition = Position.Top,
     sourcePosition = Position.Bottom
-}: NodeProps) => {
+}: NodeProps<NodeData>) => {
     return (
         <>
             <Handle
@@ -19,6 +24,7 @@ const CustomNode = ({
                 type="source"
                 position={sourcePosition}
                 isConnectable={isConnectable}
+                id="ac"
             />
         </>
     );
