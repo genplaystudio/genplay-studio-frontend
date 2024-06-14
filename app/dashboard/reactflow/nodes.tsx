@@ -12,7 +12,7 @@ export default [
     {
         id: "4",
         type: "custom",
-        data: { label: "Custom Node" },
+        data: { name: 'Jane Doe', job: 'CEO', emoji: '😎' },
         position: { x: 400, y: 300 }
     },
     {
@@ -23,10 +23,10 @@ export default [
     },
     {
         id: 'node-2',
-        type: 'output',
+        type: 'modelNode',
         targetPosition: Position.Top,
         position: { x: 0, y: 400 },
-        data: { label: 'node 2' },
+        data: { label: 'model node' },
     },
     {
         id: 'node-3',

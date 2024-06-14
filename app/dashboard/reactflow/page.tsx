@@ -23,6 +23,7 @@ import CustomNode from "./customNode";
 import TextUpdaterNode from "./textUpdaterNode";
 import CustomEdge from "./customEdge";
 import ColorChooserNode from './colorChooserNode';
+import ModelNode from './modelNode';
 
 import "reactflow/dist/style.css";
 import { useShallow } from 'zustand/react/shallow';
@@ -32,7 +33,8 @@ import useStore, { RFState } from './stateManager';
 const nodeTypes = {
     custom: CustomNode,
     textUpdater: TextUpdaterNode,
-    colorChooser: ColorChooserNode
+    colorChooser: ColorChooserNode,
+    modelNode: ModelNode
 };
 
 const edgeTypes = {
