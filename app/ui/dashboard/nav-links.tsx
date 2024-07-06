@@ -1,7 +1,7 @@
 'use client';
 
 import {
-  UserGroupIcon,
+  BookOpenIcon,
   HomeIcon,
   DocumentDuplicateIcon,
   CubeIcon,
@@ -14,13 +14,13 @@ import clsx from 'clsx';
 // Depending on the size of the application, this would be stored in a database.
 const links = [
   { name: 'Home', href: '/dashboard', icon: HomeIcon },
-  {
-    name: 'Invoices',
-    href: '/dashboard/invoices',
-    icon: DocumentDuplicateIcon,
-  },
-  { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
-  { name: 'Flow', href: '/dashboard/reactflow', icon: CubeIcon },
+  // {
+  //   name: 'Invoices',
+  //   href: '/dashboard/invoices',
+  //   icon: DocumentDuplicateIcon,
+  // },
+  { name: 'AI News', href: '/dashboard/ainews', icon: BookOpenIcon },
+  // { name: 'Flow', href: '/dashboard/reactflow', icon: CubeIcon },
 ];
 
 export default function NavLinks() {
