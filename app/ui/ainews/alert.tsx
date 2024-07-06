@@ -1,4 +1,4 @@
-import Container from "@/app/_components/container";
+import Container from "@/app/ui/ainews/container";
 import { EXAMPLE_PATH } from "@/app/lib/constants";
 import cn from "classnames";
 

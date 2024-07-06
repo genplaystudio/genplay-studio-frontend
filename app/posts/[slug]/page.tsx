@@ -3,11 +3,11 @@ import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/app/lib/api";
 import { CMS_NAME } from "@/app/lib/constants";
 import markdownToHtml from "@/app/lib/markdownToHtml";
-import Alert from "@/app/_components/alert";
-import Container from "@/app/_components/container";
-import Header from "@/app/_components/header";
-import { PostBody } from "@/app/_components/post-body";
-import { PostHeader } from "@/app/_components/post-header";
+import Alert from "@/app/ui/ainews/alert";
+import Container from "@/app/ui/ainews/container";
+import Header from "@/app/ui/ainews/header";
+import { PostBody } from "@/app/ui/ainews/post-body";
+import { PostHeader } from "@/app/ui/ainews/post-header";
 
 export default async function Post({ params }: Params) {
   const post = getPostBySlug(params.slug);

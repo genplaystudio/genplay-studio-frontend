@@ -1,9 +1,10 @@
 import { Metadata } from 'next';
-import Container from "@/app/_components/container";
-import { HeroPost } from "@/app/_components/hero-post";
-import { Intro } from "@/app/_components/intro";
-import { MoreStories } from "@/app/_components/more-stories";
+import Container from "@/app/ui/ainews/container";
+import { HeroPost } from "@/app/ui/ainews/hero-post";
+import { Intro } from "@/app/ui/ainews/intro";
+import { MoreStories } from "@/app/ui/ainews/more-stories";
 import { getAllPosts } from "@/app/lib/api";
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'IA News',
