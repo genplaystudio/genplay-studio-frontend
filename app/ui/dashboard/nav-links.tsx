@@ -20,7 +20,7 @@ const links = [
     icon: DocumentDuplicateIcon,
   },
   { name: 'AI News', href: '/dashboard/ainews', icon: BookOpenIcon },
-  // { name: 'Flow', href: '/dashboard/reactflow', icon: CubeIcon },
+  { name: 'Flow', href: '/dashboard/reactflow', icon: CubeIcon },
 ];
 
 export default function NavLinks() {
