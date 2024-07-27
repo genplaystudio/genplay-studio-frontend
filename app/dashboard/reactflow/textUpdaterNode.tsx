@@ -15,7 +15,6 @@ const TextUpdaterNode = ({
     const [count, setCount] = useState(data?.count ?? 0);
 
     const onChange = useCallback((evt: React.ChangeEvent<HTMLInputElement>) => {
-        console.log("value:" + evt.target.value)
     }, []);
 
     const onClick = () => {

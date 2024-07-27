@@ -1,7 +1,7 @@
 'use client';
 
 import {
-  UserGroupIcon,
+  BookOpenIcon,
   HomeIcon,
   DocumentDuplicateIcon,
   CubeIcon,
@@ -19,7 +19,7 @@ const links = [
     href: '/dashboard/invoices',
     icon: DocumentDuplicateIcon,
   },
-  { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
+  { name: 'AI News', href: '/dashboard/ainews', icon: BookOpenIcon },
   { name: 'Flow', href: '/dashboard/reactflow', icon: CubeIcon },
 ];
 
