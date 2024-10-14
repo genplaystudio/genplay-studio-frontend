@@ -1,9 +1,9 @@
-import AcmeLogo from '@/app/ui/acme-logo';
-import CredentialLoginForm from '@/app/ui/credential-login-form';
-import Auth0LoginForm from '@/app/ui/auth0-login-form';
+import AcmeLogo from '@/ui/acme-logo';
+import CredentialLoginForm from '@/ui/credential-login-form';
+import Auth0LoginForm from '@/ui/auth0-login-form';
 import { Metadata } from 'next';
 import { signIn, auth, providerMap } from "@/auth";
-import { lusitana } from '@/app/ui/fonts';
+import { lusitana } from '@/ui/fonts';
 
 export const metadata: Metadata = {
   title: 'Login',

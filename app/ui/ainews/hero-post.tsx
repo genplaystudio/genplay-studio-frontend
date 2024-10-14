@@ -1,5 +1,5 @@
-import Avatar from "@/app/ui/ainews/avatar";
-import CoverImage from "@/app/ui/ainews/cover-image";
+import Avatar from "@/ui/ainews/avatar";
+import CoverImage from "@/ui/ainews/cover-image";
 import { type Author } from "@/interfaces/author";
 import Link from "next/link";
 import DateFormatter from "./date-formatter";

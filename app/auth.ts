@@ -1,14 +1,15 @@
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
-import { authConfig } from './auth.config';
+import { authConfig } from '@/auth.config';
 import { z } from 'zod';
 import { sql } from '@vercel/postgres';
-import type { User } from '@/app/lib/definitions';
+import type { User } from '@/lib/definitions';
 import bcrypt from 'bcrypt';
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google"
 import Discord from 'next-auth/providers/discord'
 import type { Provider } from "next-auth/providers";
+import { getStringFromBuffer } from '@/lib/utils';
 
 async function getUser(email: string): Promise<User | undefined> {
   try {
@@ -67,6 +68,39 @@ export const providerMap = providers.map((provider) => {
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
-  debug: true,
-  providers,
-});
+  providers: [
+    Credentials({
+      async authorize(credentials) {
+        const parsedCredentials = z
+          .object({
+            email: z.string().email(),
+            password: z.string().min(6)
+          })
+          .safeParse(credentials)
+
+        if (parsedCredentials.success) {
+          const { email, password } = parsedCredentials.data
+          const user = await getUser(email)
+
+          if (!user) return null
+
+          const encoder = new TextEncoder()
+          const saltedPassword = encoder.encode(password + user.salt)
+          const hashedPasswordBuffer = await crypto.subtle.digest(
+            'SHA-256',
+            saltedPassword
+          )
+          const hashedPassword = getStringFromBuffer(hashedPasswordBuffer)
+
+          if (hashedPassword === user.password) {
+            return user
+          } else {
+            return null
+          }
+        }
+
+        return null
+      }
+    })
+  ]
+})

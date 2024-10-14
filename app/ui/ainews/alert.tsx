@@ -1,5 +1,5 @@
-import Container from "@/app/ui/ainews/container";
-import { EXAMPLE_PATH } from "@/app/lib/constants";
+import Container from "@/ui/ainews/container";
+import { EXAMPLE_PATH } from "@/lib/constants";
 import cn from "classnames";
 
 type Props = {

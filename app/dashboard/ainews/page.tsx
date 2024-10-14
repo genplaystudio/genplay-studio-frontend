@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
-import Container from "@/app/ui/ainews/container";
-import { HeroPost } from "@/app/ui/ainews/hero-post";
-import { Intro } from "@/app/ui/ainews/intro";
-import { MoreStories } from "@/app/ui/ainews/more-stories";
-import { getAllPosts } from "@/app/lib/api";
-import Footer from "@/app/ui/ainews/footer";
+import Container from "@/ui/ainews/container";
+import { HeroPost } from "@/ui/ainews/hero-post";
+import { Intro } from "@/ui/ainews/intro";
+import { MoreStories } from "@/ui/ainews/more-stories";
+import { getAllPosts } from "@/lib/api";
+import Footer from "@/ui/ainews/footer";
 
 export const metadata: Metadata = {
   title: 'IA News',
@@ -27,7 +27,7 @@ export default function Page() {
         excerpt={heroPost.excerpt}
       />
       {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-      
+
     </Container>
     <Footer />
   </main>);
