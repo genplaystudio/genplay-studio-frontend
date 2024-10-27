@@ -34,25 +34,25 @@ const providers: Provider[] = [
     clientId: process.env.AUTH_DISCORD_ID,
     clientSecret: process.env.AUTH_DISCORD_SECRET,
   }),
-  // Credentials({
-  //   async authorize(credentials) {
-  //     const parsedCredentials = z
-  //       .object({ email: z.string().email(), password: z.string().min(6) })
-  //       .safeParse(credentials);
+  Credentials({
+    async authorize(credentials) {
+      const parsedCredentials = z
+        .object({ email: z.string().email(), password: z.string().min(6) })
+        .safeParse(credentials);
 
-  //     if (parsedCredentials.success) {
-  //       const { email, password } = parsedCredentials.data;
-  //       const user = await getUser(email);
-  //       if (!user) return null;
-  //       const passwordsMatch = await bcrypt.compare(password, user.password);
+      if (parsedCredentials.success) {
+        const { email, password } = parsedCredentials.data;
+        const user = await getUser(email);
+        if (!user) return null;
+        const passwordsMatch = await bcrypt.compare(password, user.password);
 
-  //       if (passwordsMatch) return user;
-  //     }
+        if (passwordsMatch) return user;
+      }
 
-  //     console.log('Invalid credentials');
-  //     return null;
-  //   },
-  // }),
+      console.log('Invalid credentials');
+      return null;
+    },
+  }),
 ];
 
 export const providerMap = providers.map((provider) => {
@@ -102,5 +102,5 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         return null
       }
     })
-  ]
+  ],
 })

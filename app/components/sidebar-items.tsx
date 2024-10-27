@@ -5,8 +5,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 import { removeChat, shareChat } from '@/actions'
 
-import { SidebarActions } from '@/components/ui/sidebar-actions'
-import { SidebarItem } from '@/components/ui/sidebar-item'
+import { SidebarActions } from '@/components/sidebar-actions'
+import { SidebarItem } from '@/components/sidebar-item'
 
 interface SidebarItemsProps {
   chats?: Chat[]
