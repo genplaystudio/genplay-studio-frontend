@@ -1,6 +1,6 @@
 'use client';
 
-import { CustomerField } from '@/app/lib/definitions';
+import { CustomerField } from '@/lib/definitions';
 import Link from 'next/link';
 import {
   CheckIcon,
@@ -9,7 +9,7 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
 import { Button } from '@/app/ui/button';
-import { createInvoice } from '@/app/lib/actions';
+import { createInvoice } from '@/lib/actions';
 import { useFormState } from 'react-dom';
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
@@ -132,13 +132,13 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
               ))}
           </div>
         </fieldset>
-        {state.errors &&
+        {state.errors && (
           <div id="field-error" aria-live="polite" aria-atomic="true">
             <p className="mt-2 text-sm text-red-500" key={state.message}>
               {state.message}
             </p>
           </div>
-        }
+        )}
       </div>
       <div className="mt-6 flex justify-end gap-4">
         <Link

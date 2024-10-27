@@ -1,13 +1,13 @@
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { getAllPosts, getPostBySlug } from "@/app/lib/api";
-import { CMS_NAME } from "@/app/lib/constants";
-import markdownToHtml from "@/app/lib/markdownToHtml";
-import Alert from "@/app/ui/ainews/alert";
-import Container from "@/app/ui/ainews/container";
-import Header from "@/app/ui/ainews/header";
-import { PostBody } from "@/app/ui/ainews/post-body";
-import { PostHeader } from "@/app/ui/ainews/post-header";
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { getAllPosts, getPostBySlug } from '@/lib/api';
+import { CMS_NAME } from '@/lib/constants';
+import markdownToHtml from '@/lib/markdownToHtml';
+import Alert from '@/app/ui/ainews/alert';
+import Container from '@/app/ui/ainews/container';
+import Header from '@/app/ui/ainews/header';
+import { PostBody } from '@/app/ui/ainews/post-body';
+import { PostHeader } from '@/app/ui/ainews/post-header';
 
 export default async function Post({ params }: Params) {
   const post = getPostBySlug(params.slug);
@@ -16,7 +16,7 @@ export default async function Post({ params }: Params) {
     return notFound();
   }
 
-  const content = await markdownToHtml(post.content || "");
+  const content = await markdownToHtml(post.content || '');
 
   return (
     <main>
