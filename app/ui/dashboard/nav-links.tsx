@@ -5,6 +5,7 @@ import {
   HomeIcon,
   DocumentDuplicateIcon,
   CubeIcon,
+  ChatBubbleLeftRightIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -21,6 +22,7 @@ const links = [
   },
   { name: 'AI News', href: '/dashboard/ainews', icon: BookOpenIcon },
   { name: 'Flow', href: '/dashboard/reactflow', icon: CubeIcon },
+  { name: 'chat', href: '/dashboard/chat', icon: ChatBubbleLeftRightIcon },
 ];
 
 export default function NavLinks() {
