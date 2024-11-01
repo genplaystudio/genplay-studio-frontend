@@ -11,7 +11,7 @@ import {
 import Image from 'next/image';
 import { FC, useContext, useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
-import { Input } from '@/components/chat/ui/input';
+import { Input } from '@/components/ui/input';
 // import { TextareaAutosize } from '../ui/textarea-autosize';
 // import { ChatCommandInput } from './chat-command-input';
 // import { ChatFilesDisplay } from './chat-files-display';

@@ -14,9 +14,9 @@ import { ChatbotUIContext } from '@/context/context';
 import { useParams } from 'next/navigation';
 import { FC, useContext, useEffect, useState } from 'react';
 // import { ChatHelp } from './chat-help';
-// import { useScroll } from './chat-hooks/use-scroll';
+import { useScroll } from '../chat/chat-hooks/use-scroll';
 // import { ChatMessages } from './chat-messages';
-// import { ChatScrollButtons } from './chat-scroll-buttons';
+import { ChatScrollButtons } from './chat-scroll-buttons';
 // import { ChatSecondaryButtons } from './chat-secondary-buttons';
 
 interface ChatUIProps {}
@@ -43,38 +43,38 @@ export const ChatUI: FC<ChatUIProps> = ({}) => {
 
   // const { handleNewChat, handleFocusChatInput } = useChatHandler();
 
-  // const {
-  //   messagesStartRef,
-  //   messagesEndRef,
-  //   handleScroll,
-  //   scrollToBottom,
-  //   setIsAtBottom,
-  //   isAtTop,
-  //   isAtBottom,
-  //   isOverflowing,
-  //   scrollToTop,
-  // } = useScroll();
+  const {
+    messagesStartRef,
+    messagesEndRef,
+    handleScroll,
+    scrollToBottom,
+    setIsAtBottom,
+    isAtTop,
+    isAtBottom,
+    isOverflowing,
+    scrollToTop,
+  } = useScroll();
 
   const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     await fetchMessages();
-  //     await fetchChat();
+  useEffect(() => {
+    const fetchData = async () => {
+      // await fetchMessages();
+      // await fetchChat();
 
-  //     scrollToBottom();
-  //     setIsAtBottom(true);
-  //   };
+      scrollToBottom();
+      setIsAtBottom(true);
+    };
 
-  //   if (params.chatid) {
-  //     fetchData().then(() => {
-  //       handleFocusChatInput();
-  //       setLoading(false);
-  //     });
-  //   } else {
-  //     setLoading(false);
-  //   }
-  // }, []);
+    if (params.chatid) {
+      fetchData().then(() => {
+        // handleFocusChatInput();
+        setLoading(false);
+      });
+    } else {
+      setLoading(false);
+    }
+  }, []);
 
   // const fetchMessages = async () => {
   //   const fetchedMessages = await getMessagesByChatId(params.chatid as string);
@@ -188,13 +188,13 @@ export const ChatUI: FC<ChatUIProps> = ({}) => {
   return (
     <div className="relative flex h-full flex-col items-center">
       <div className="absolute left-4 top-2.5 flex justify-center">
-        {/* <ChatScrollButtons
+        <ChatScrollButtons
           isAtTop={isAtTop}
           isAtBottom={isAtBottom}
           isOverflowing={isOverflowing}
           scrollToTop={scrollToTop}
           scrollToBottom={scrollToBottom}
-        /> */}
+        />
       </div>
 
       <div className="absolute right-4 top-1 flex h-[40px] items-center space-x-2">
@@ -205,20 +205,20 @@ export const ChatUI: FC<ChatUIProps> = ({}) => {
       <div className="bg-secondary flex max-h-[50px] min-h-[50px] w-full items-center justify-center border-b-2 font-bold">
         <div className="max-w-[200px] truncate sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] xl:max-w-[700px]">
           {/* {selectedChat?.name || 'Chat'} */}
-          {'Chat'}
+          {/* {'Chat'} */}
         </div>
       </div>
 
       <div
         className="size-full flex flex-col overflow-auto border-b"
-        // onScroll={handleScroll}
+        onScroll={handleScroll}
       >
-        {/* <div ref={messagesStartRef} /> */}
+        <div ref={messagesStartRef} />
 
         {/* <ChatMessages /> */}
         <h4>ChatMessages</h4>
 
-        {/* <div ref={messagesEndRef} /> */}
+        <div ref={messagesEndRef} />
       </div>
 
       <div className="relative w-full min-w-[300px] items-end px-2 pb-3 pt-0 sm:w-[600px] sm:pb-8 sm:pt-5 md:w-[700px] lg:w-[700px] xl:w-[800px]">
